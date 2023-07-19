@@ -16,27 +16,19 @@
           <Label
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            Text="Header"
+            Text="Expander 1"
             TextColor="White"
             FontSize="Title" />
         </Grid>
       </maui:Expander.HeaderContent>
-      <Grid RowDefinitions="90,auto,90">
-        <BoxView
-          Grid.Row="0"
-          VerticalOptions="Fill"
-          HorizontalOptions="Fill"
-          BackgroundColor="Aqua" />
+      <Grid RowDefinitions="90,auto,90"
+            BackgroundColor="LightBlue">
         <Label
+          Grid.Row="1"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           Text="If you can see me, I am expanded!"
           FontSize="Large" />
-        <BoxView
-          Grid.Row="2"
-          VerticalOptions="Fill"
-          HorizontalOptions="Fill"
-          BackgroundColor="Pink" />
       </Grid>
     </maui:Expander>
     <maui:Expander>
@@ -48,27 +40,19 @@
           <Label
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            Text="Header"
+            Text="Expander 2"
             TextColor="White"
             FontSize="Title" />
         </Grid>
       </maui:Expander.HeaderContent>
-      <Grid RowDefinitions="90,auto,90">
-        <BoxView
-          Grid.Row="0"
-          VerticalOptions="Fill"
-          HorizontalOptions="Fill"
-          BackgroundColor="Aqua" />
+      <Grid RowDefinitions="90,auto,90"
+            BackgroundColor="LightGreen">
         <Label
+          Grid.Row="1"
           VerticalOptions="Center"
           HorizontalOptions="Center"
-          Text="If you can see me, I am expanded!"
+          Text="If you can see me, I am expanded, too!"
           FontSize="Large" />
-        <BoxView
-          Grid.Row="2"
-          VerticalOptions="Fill"
-          HorizontalOptions="Fill"
-          BackgroundColor="Pink" />
       </Grid>
     </maui:Expander>
   </VerticalStackLayout>
