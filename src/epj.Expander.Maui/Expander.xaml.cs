@@ -1,3 +1,5 @@
+using System.Windows.Input;
+
 namespace epj.Expander.Maui;
 
 public partial class Expander : ContentView
@@ -14,13 +16,40 @@ public partial class Expander : ContentView
         }
     }
 
+    private bool _isExpanded;
     public bool IsExpanded
     {
-        get => (bool)GetValue(IsExpandedProperty);
-        set => SetValue(IsExpandedProperty, value);
+        get => _isExpanded;
+        set
+        {
+            if (_isExpanded == value) return;
+            _isExpanded = value;
+            OnPropertyChanged();
+
+            IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = value });
+        }
     }
 
-    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(Expander));
+    public ICommand Command
+    {
+        get => (ICommand)GetValue(CommandProperty);
+        set => SetValue(CommandProperty, value);
+    }
+
+    public object CommandParameter
+    {
+        get => GetValue(CommandParameterProperty);
+        set => SetValue(CommandParameterProperty, value);
+    }
+
+    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(Expander), propertyChanged: OnIsExpandedPropertyChanged);
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
+
+    private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        ((Expander)bindable).IsExpanded = (bool)newValue;
+    }
 
     public event EventHandler<ExpandedEventArgs> IsExpandedChanged;
 
@@ -32,6 +61,6 @@ public partial class Expander : ContentView
     private void OnHeaderContentTapped(object sender, TappedEventArgs e)
     {
         IsExpanded = !IsExpanded;
-        IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
+        Command?.Execute(CommandProperty);
     }
 }
