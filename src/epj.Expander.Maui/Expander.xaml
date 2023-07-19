@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="epj.Expander.Maui.Expander">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentView
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="epj.Expander.Maui.Expander"
+  x:Name="ExpanderControl">
+
+  <ContentView.ControlTemplate>
+    <ControlTemplate>
+      <Grid RowDefinitions="auto,auto">
+        <ContentView
+          Grid.Row="0"
+          Content="{Binding HeaderContent, Source={x:Reference ExpanderControl}}">
+          <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnHeaderContentTapped" />
+          </ContentView.GestureRecognizers>
+        </ContentView>
+        <ContentPresenter
+          Grid.Row="1"
+          IsVisible="{Binding IsExpanded, Source={x:Reference ExpanderControl}}" />
+      </Grid>
+    </ControlTemplate>
+  </ContentView.ControlTemplate>
+
+
 </ContentView>

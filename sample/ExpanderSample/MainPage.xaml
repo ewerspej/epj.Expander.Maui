@@ -1,41 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ExpanderSample.MainPage">
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
+  x:Class="ExpanderSample.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+  <VerticalStackLayout
+    Spacing="10">
+    <maui:Expander>
+      <maui:Expander.HeaderContent>
+        <Grid
+          HeightRequest="50"
+          BackgroundColor="DarkSlateGray"
+          HorizontalOptions="Fill">
+          <Label
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Text="Header"
+            TextColor="White"
+            FontSize="Title" />
+        </Grid>
+      </maui:Expander.HeaderContent>
+      <Grid RowDefinitions="90,auto,90">
+        <BoxView
+          Grid.Row="0"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          BackgroundColor="Aqua" />
+        <Label
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          Text="If you can see me, I am expanded!"
+          FontSize="Large" />
+        <BoxView
+          Grid.Row="2"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          BackgroundColor="Pink" />
+      </Grid>
+    </maui:Expander>
+    <maui:Expander>
+      <maui:Expander.HeaderContent>
+        <Grid
+          HeightRequest="50"
+          BackgroundColor="DarkSlateGray"
+          HorizontalOptions="Fill">
+          <Label
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Text="Header"
+            TextColor="White"
+            FontSize="Title" />
+        </Grid>
+      </maui:Expander.HeaderContent>
+      <Grid RowDefinitions="90,auto,90">
+        <BoxView
+          Grid.Row="0"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          BackgroundColor="Aqua" />
+        <Label
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          Text="If you can see me, I am expanded!"
+          FontSize="Large" />
+        <BoxView
+          Grid.Row="2"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          BackgroundColor="Pink" />
+      </Grid>
+    </maui:Expander>
+  </VerticalStackLayout>
 
 </ContentPage>
