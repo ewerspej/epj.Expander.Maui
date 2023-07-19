@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpanderSample", "ExpanderSample.csproj", "{4FB08834-7FD3-4205-B421-945E0F1A1E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epj.Expander.Maui", "..\..\src\epj.Expander.Maui\epj.Expander.Maui.csproj", "{4C1A4645-5A03-43BE-8FDB-52D5E87A3F50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB08834-7FD3-4205-B421-945E0F1A1E05}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4C1A4645-5A03-43BE-8FDB-52D5E87A3F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1A4645-5A03-43BE-8FDB-52D5E87A3F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1A4645-5A03-43BE-8FDB-52D5E87A3F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1A4645-5A03-43BE-8FDB-52D5E87A3F50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1EECFCD-B42F-4470-91E9-5BDA86F7A7CC}
+	EndGlobalSection
+EndGlobal
