@@ -15,7 +15,35 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+    <Version>1.0.0-alpha</Version>
+    <Title>Simple Expander for MAUI</Title>
+    <Authors>ewerspej</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<GeneratePackageOnBuild Condition="">True</GeneratePackageOnBuild>
+		<Description>A simple Expander control for .NET MAUI that can also be used to implement an accordion</Description>
+		<PackageProjectUrl>https://github.com/ewerspej/epj.Expander.Maui</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/ewerspej/epj.Expander.Maui</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>expander;maui;dotnet;accordion;</PackageTags>
+		<PackageIcon>epj_icon.png</PackageIcon>
 	</PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\epj_icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Expander.xaml">
