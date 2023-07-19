@@ -52,6 +52,7 @@ public partial class Expander : ContentView
     }
 
     public event EventHandler<ExpandedEventArgs> IsExpandedChanged;
+    public event EventHandler<ExpandedEventArgs> HeaderTapped;
 
     public Expander()
     {
@@ -61,6 +62,7 @@ public partial class Expander : ContentView
     private void OnHeaderContentTapped(object sender, TappedEventArgs e)
     {
         IsExpanded = !IsExpanded;
-        Command?.Execute(CommandProperty);
+        HeaderTapped?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
+        Command?.Execute(CommandParameter);
     }
 }
