@@ -7,18 +7,20 @@
 
   <ContentView.ControlTemplate>
     <ControlTemplate>
-      <Grid RowDefinitions="auto,auto">
+      <VerticalStackLayout>
         <ContentView
-          Grid.Row="0"
+          VerticalOptions="Start"
+          HorizontalOptions="Fill"
           Content="{Binding HeaderContent, Source={x:Reference ExpanderControl}}">
           <ContentView.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnHeaderContentTapped" />
           </ContentView.GestureRecognizers>
         </ContentView>
         <ContentPresenter
-          Grid.Row="1"
+          VerticalOptions="Start"
+          HorizontalOptions="Fill"
           IsVisible="{Binding IsExpanded, Source={x:Reference ExpanderControl}}" />
-      </Grid>
+      </VerticalStackLayout>
     </ControlTemplate>
   </ContentView.ControlTemplate>
 

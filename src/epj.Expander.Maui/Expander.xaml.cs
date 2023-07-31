@@ -4,16 +4,10 @@ namespace epj.Expander.Maui;
 
 public partial class Expander : ContentView
 {
-    private View _headerContent;
-    public View HeaderContent
+    public IView HeaderContent
     {
-        get => _headerContent ??= new ContentView();
-        set
-        {
-            if (_headerContent == value) return;
-            _headerContent = value;
-            OnPropertyChanged();
-        }
+        get => (IView)GetValue(HeaderContentProperty);
+        set => SetValue(HeaderContentProperty, value);
     }
 
     private bool _isExpanded;
@@ -45,6 +39,7 @@ public partial class Expander : ContentView
     public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(Expander), propertyChanged: OnIsExpandedPropertyChanged);
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
+    public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(IView), typeof(Expander));
 
     private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
