@@ -68,16 +68,18 @@
             Margin="8,0"/>
         </Grid>
       </maui:Expander.HeaderContent>
-      <Grid
-        RowDefinitions="300"
-        BackgroundColor="LightGreen">
-        <Label
-          VerticalOptions="Center"
-          HorizontalOptions="Center"
-          Margin="16,0"
-          Text="If you can see me, I am expanded, too!"
-          FontSize="Large" />
-      </Grid>
+      <maui:Expander.BodyContent>
+        <Grid
+          RowDefinitions="300"
+          BackgroundColor="LightGreen">
+          <Label
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="16,0"
+            Text="If you can see me, I am expanded, too!"
+            FontSize="Large" />
+        </Grid>
+      </maui:Expander.BodyContent>
     </maui:Expander>
   </VerticalStackLayout>
 

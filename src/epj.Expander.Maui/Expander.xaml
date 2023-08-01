@@ -19,6 +19,7 @@
         <ContentPresenter
           VerticalOptions="Start"
           HorizontalOptions="Fill"
+          Content="{Binding BodyContent, Source={x:Reference ExpanderControl}}"
           IsVisible="{Binding IsExpanded, Source={x:Reference ExpanderControl}}" />
       </VerticalStackLayout>
     </ControlTemplate>
