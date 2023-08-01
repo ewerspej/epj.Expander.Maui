@@ -75,6 +75,7 @@
           RowDefinitions="300"
           BackgroundColor="LightGreen">
           <Label
+            x:Name="ExpanderTwoLabel"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Margin="16,0"
