@@ -16,23 +16,30 @@
         <Grid
           HeightRequest="50"
           BackgroundColor="DarkSlateGray"
-          HorizontalOptions="Fill">
+          HorizontalOptions="Fill"
+          ColumnDefinitions="*,auto">
           <Label
+            Grid.Column="0"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Text="Expander 1"
             TextColor="White"
             FontSize="Title" />
+          <Image
+            Grid.Column="1"
+            Source="dotnet_bot.png"
+            HeightRequest="40"
+            Margin="8,0"/>
         </Grid>
       </maui:Expander.HeaderContent>
       <Grid
-        RowDefinitions="90,auto,90"
+        RowDefinitions="200"
         BackgroundColor="LightBlue">
         <Label
           x:Name="ExpanderOneLabel"
-          Grid.Row="1"
           VerticalOptions="Center"
           HorizontalOptions="Center"
+          Margin="16,0"
           Text="If you can see me, I am expanded!"
           FontSize="Large" />
       </Grid>
@@ -45,23 +52,29 @@
         <Grid
           HeightRequest="50"
           BackgroundColor="DarkSlateGray"
-          HorizontalOptions="Fill">
+          HorizontalOptions="Fill"
+          ColumnDefinitions="*,auto">
           <Label
-            x:Name="ExpanderTwoLabel"
+            Grid.Column="0"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Text="Expander 2"
             TextColor="White"
             FontSize="Title" />
+          <Image
+            Grid.Column="1"
+            Source="dotnet_bot.png"
+            HeightRequest="40"
+            Margin="8,0"/>
         </Grid>
       </maui:Expander.HeaderContent>
       <Grid
-        RowDefinitions="90,auto,90"
+        RowDefinitions="300"
         BackgroundColor="LightGreen">
         <Label
-          Grid.Row="1"
           VerticalOptions="Center"
           HorizontalOptions="Center"
+          Margin="16,0"
           Text="If you can see me, I am expanded, too!"
           FontSize="Large" />
       </Grid>
