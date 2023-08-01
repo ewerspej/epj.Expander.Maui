@@ -7,8 +7,10 @@
 
   <ContentView.ControlTemplate>
     <ControlTemplate>
-      <VerticalStackLayout>
+      <VerticalStackLayout
+        IsClippedToBounds="True">
         <ContentView
+          ZIndex="500"
           VerticalOptions="Start"
           HorizontalOptions="Fill"
           Content="{Binding HeaderContent, Source={x:Reference ExpanderControl}}">
@@ -17,9 +19,10 @@
           </ContentView.GestureRecognizers>
         </ContentView>
         <ContentPresenter
+          ZIndex="0"
           VerticalOptions="Start"
           HorizontalOptions="Fill"
-          Content="{Binding BodyContent, Source={x:Reference ExpanderControl}}"
+          Content="{Binding BodyContent, Source={x:Reference ExpanderControl}, Mode=TwoWay}"
           IsVisible="{Binding IsExpanded, Source={x:Reference ExpanderControl}}" />
       </VerticalStackLayout>
     </ControlTemplate>

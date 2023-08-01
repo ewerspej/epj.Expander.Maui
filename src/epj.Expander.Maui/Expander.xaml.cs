@@ -10,9 +10,9 @@ public partial class Expander : ContentView
         set => SetValue(HeaderContentProperty, value);
     }
 
-    public IView BodyContent
+    public View BodyContent
     {
-        get => (IView)GetValue(BodyContentProperty);
+        get => (View)GetValue(BodyContentProperty);
         set => SetValue(BodyContentProperty, value);
     }
 
@@ -24,11 +24,13 @@ public partial class Expander : ContentView
         {
             if (_isExpanded == value) return;
             _isExpanded = value;
+            Animate();
             OnPropertyChanged();
-
             IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = value });
         }
     }
+
+    public bool Animated { get; set; }
 
     public ICommand Command
     {
@@ -46,7 +48,7 @@ public partial class Expander : ContentView
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
     public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(IView), typeof(Expander));
-    public static readonly BindableProperty BodyContentProperty = BindableProperty.Create(nameof(BodyContent), typeof(IView), typeof(Expander), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty BodyContentProperty = BindableProperty.Create(nameof(BodyContent), typeof(View), typeof(Expander), defaultBindingMode: BindingMode.TwoWay);
 
     private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -66,5 +68,24 @@ public partial class Expander : ContentView
         IsExpanded = !IsExpanded;
         HeaderTapped?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
         Command?.Execute(CommandParameter);
+    }
+
+    private void Animate()
+    {
+        if (!IsExpanded || !Animated)
+        {
+            return;
+        }
+
+        var size = BodyContent.Measure(0, 0);
+
+        BodyContent.HeightRequest = 0;
+        var animation1 = new Animation(h => BodyContent.HeightRequest = h, 0, size.Minimum.Height);
+
+        BodyContent.TranslationY = -size.Minimum.Height;
+        var animation2 = new Animation(h => BodyContent.TranslationY = h, -size.Minimum.Height, 0);
+
+        animation1.Commit(this, "BodyContentHeight");
+        animation2.Commit(this, "BodyContentTranslationY");
     }
 }

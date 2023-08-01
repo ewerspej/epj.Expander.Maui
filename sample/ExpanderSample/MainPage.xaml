@@ -10,6 +10,7 @@
   <VerticalStackLayout Spacing="10">
     <maui:Expander
       x:Name="ExpanderOne"
+      Animated="True"
       Command="{Binding DoSomethingCommand}"
       CommandParameter="{Binding Text, Source={x:Reference ExpanderOneLabel}}">
       <maui:Expander.HeaderContent>
@@ -46,6 +47,7 @@
     </maui:Expander>
     <maui:Expander
       x:Name="ExpanderTwo"
+      Animated="True"
       Command="{Binding DoSomethingCommand}"
       CommandParameter="{Binding Text, Source={x:Reference ExpanderTwoLabel}}">
       <maui:Expander.HeaderContent>
