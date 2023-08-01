@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace epj.Expander.Maui;
@@ -24,9 +25,7 @@ public partial class Expander : ContentView
         {
             if (_isExpanded == value) return;
             _isExpanded = value;
-            Animate();
-            OnPropertyChanged();
-            IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = value });
+            _ = OnIsExpandedAsync();
         }
     }
 
@@ -70,22 +69,49 @@ public partial class Expander : ContentView
         Command?.Execute(CommandParameter);
     }
 
-    private void Animate()
+    private async Task OnIsExpandedAsync()
     {
-        if (!IsExpanded || !Animated)
+        try
         {
-            return;
+            if (!Animated)
+            {
+                return;
+            }
+
+            var size = BodyContent.Measure(0, 0);
+
+            if (IsExpanded)
+            {
+                OnPropertyChanged(nameof(IsExpanded));
+
+                BodyContent.HeightRequest = 0;
+                BodyContent.TranslationY = -size.Minimum.Height;
+
+                await Task.WhenAll(new List<Task>
+                {
+                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height),
+                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0)
+                });
+            }
+            else
+            {
+                await Task.WhenAll(new List<Task>
+                {
+                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0),
+                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height)
+                });
+
+                BodyContent.HeightRequest = size.Minimum.Height;
+            }
         }
-
-        var size = BodyContent.Measure(0, 0);
-
-        BodyContent.HeightRequest = 0;
-        var animation1 = new Animation(h => BodyContent.HeightRequest = h, 0, size.Minimum.Height);
-
-        BodyContent.TranslationY = -size.Minimum.Height;
-        var animation2 = new Animation(h => BodyContent.TranslationY = h, -size.Minimum.Height, 0);
-
-        animation1.Commit(this, "BodyContentHeight");
-        animation2.Commit(this, "BodyContentTranslationY");
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
+        finally
+        {
+            OnPropertyChanged(nameof(IsExpanded));
+            IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
+        }
     }
 }
