@@ -7,9 +7,9 @@ public partial class Expander : ContentView
 {
     private static bool _animationsEnabled;
 
-    public IView HeaderContent
+    public View HeaderContent
     {
-        get => (IView)GetValue(HeaderContentProperty);
+        get => (View)GetValue(HeaderContentProperty);
         set => SetValue(HeaderContentProperty, value);
     }
 
@@ -44,7 +44,7 @@ public partial class Expander : ContentView
     public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(Expander), propertyChanged: OnIsExpandedPropertyChanged);
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
-    public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(IView), typeof(Expander));
+    public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(View), typeof(Expander));
 
     private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
