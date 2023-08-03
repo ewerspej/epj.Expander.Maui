@@ -21,7 +21,7 @@ public partial class Expander : ContentView
         {
             if (_isExpanded == value) return;
             _isExpanded = value;
-            _ = OnIsExpandedAsync();
+            _ = OnIsExpandedChangedAsync();
         }
     }
 
@@ -64,7 +64,7 @@ public partial class Expander : ContentView
         Command?.Execute(CommandParameter);
     }
 
-    private async Task OnIsExpandedAsync()
+    private async Task OnIsExpandedChangedAsync()
     {
         try
         {
