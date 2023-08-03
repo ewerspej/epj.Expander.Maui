@@ -69,7 +69,7 @@ public partial class Expander : ContentView
         try
         {
 #if WINDOWS
-            // Windows version currently doesn't support animations, because the size of the measured size of BodyContent is zero for width and height
+            // Windows version currently doesn't support animations, because the measured size of BodyContent is zero for both width and height
             return;
 #endif
 
