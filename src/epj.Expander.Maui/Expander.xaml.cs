@@ -5,6 +5,8 @@ namespace epj.Expander.Maui;
 
 public partial class Expander : ContentView
 {
+    private static bool _animationsEnabled;
+
     public IView HeaderContent
     {
         get => (IView)GetValue(HeaderContentProperty);
@@ -68,12 +70,13 @@ public partial class Expander : ContentView
     {
         try
         {
-#if WINDOWS
+#if !ANDROID && !IOS
             // Windows version currently doesn't support animations, because the measured size of BodyContent is zero for both width and height
+            // MacCatalyst not tested yet
             return;
 #endif
 
-            if (!Animated || BodyContent == null)
+            if (!CanAnimate() || BodyContent == null)
             {
                 return;
             }
@@ -114,4 +117,13 @@ public partial class Expander : ContentView
             IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
         }
     }
+
+    private bool CanAnimate() => _animationsEnabled && Animated;
+
+    /// <summary>
+    /// Animations are experimental at the moment, call this once in App.xaml.cs or MauiProgram.cs to enable animation. 
+    /// Note: Animations are only supported on Android and iOS at the moment.
+    /// </summary>
+    /// <param name="enable"></param>
+    public static void EnableAnimations(bool enable = true) => _animationsEnabled = enable;
 }

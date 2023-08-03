@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using epj.Expander.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace ExpanderSample
 {
@@ -18,6 +19,9 @@ namespace ExpanderSample
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+
+            // enable animations for Android & iOS
+            Expander.EnableAnimations();
 
             return builder.Build();
         }
