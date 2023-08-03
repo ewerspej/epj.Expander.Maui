@@ -68,6 +68,10 @@ public partial class Expander : ContentView
     {
         try
         {
+#if WINDOWS
+            return;
+#endif
+
             if (!Animated)
             {
                 return;
