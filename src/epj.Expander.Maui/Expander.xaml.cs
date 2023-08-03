@@ -84,16 +84,16 @@ public partial class Expander : ContentView
 
                 await Task.WhenAll(new List<Task>
                 {
-                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height),
-                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0)
+                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height, Easing.CubicIn),
+                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0, Easing.CubicIn),
                 });
             }
             else
             {
                 await Task.WhenAll(new List<Task>
                 {
-                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0),
-                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height)
+                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height, Easing.CubicOut),
+                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0, Easing.CubicOut),
                 });
 
                 BodyContent.HeightRequest = size.Minimum.Height;
