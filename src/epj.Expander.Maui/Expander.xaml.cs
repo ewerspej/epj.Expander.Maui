@@ -23,7 +23,7 @@ public partial class Expander : ContentView
         {
             if (_isExpanded == value) return;
             _isExpanded = value;
-            _ = OnIsExpandedChangedAsync();
+            OnIsExpandedChanged();
         }
     }
 
@@ -66,22 +66,16 @@ public partial class Expander : ContentView
         Command?.Execute(CommandParameter);
     }
 
-    private async Task OnIsExpandedChangedAsync()
+    private async void OnIsExpandedChanged()
     {
         try
         {
-#if !ANDROID && !IOS
-            // Windows version currently doesn't support animations, because the measured size of BodyContent is zero for both width and height
-            // MacCatalyst not tested yet
-            return;
-#endif
-
             if (!CanAnimate() || BodyContent == null)
             {
                 return;
             }
 
-            var size = BodyContent.Measure(0, 0);
+            var size = BodyContent.Measure(double.PositiveInfinity, double.PositiveInfinity);
 
             if (IsExpanded)
             {
