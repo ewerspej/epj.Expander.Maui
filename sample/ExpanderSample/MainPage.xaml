@@ -30,7 +30,7 @@
             Grid.Column="1"
             Source="dotnet_bot.png"
             HeightRequest="40"
-            Margin="8,0"/>
+            Margin="8,0" />
         </Grid>
       </maui:Expander.HeaderContent>
       <Grid
@@ -67,22 +67,20 @@
             Grid.Column="1"
             Source="dotnet_bot.png"
             HeightRequest="40"
-            Margin="8,0"/>
+            Margin="8,0" />
         </Grid>
       </maui:Expander.HeaderContent>
-      <maui:Expander.BodyContent>
-        <Grid
-          RowDefinitions="300"
-          BackgroundColor="LightGreen">
-          <Label
-            x:Name="ExpanderTwoLabel"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="16,0"
-            Text="If you can see me, I am expanded, too!"
-            FontSize="Large" />
-        </Grid>
-      </maui:Expander.BodyContent>
+      <Grid
+        RowDefinitions="300"
+        BackgroundColor="LightGreen">
+        <Label
+          x:Name="ExpanderTwoLabel"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          Margin="16,0"
+          Text="If you can see me, I am expanded, too!"
+          FontSize="Large" />
+      </Grid>
     </maui:Expander>
   </VerticalStackLayout>
 

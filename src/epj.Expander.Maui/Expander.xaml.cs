@@ -11,11 +11,7 @@ public partial class Expander : ContentView
         set => SetValue(HeaderContentProperty, value);
     }
 
-    public View BodyContent
-    {
-        get => (View)GetValue(BodyContentProperty);
-        set => SetValue(BodyContentProperty, value);
-    }
+    public View BodyContent => GetTemplateChild("ExpanderContent") as ContentPresenter;
 
     private bool _isExpanded;
     public bool IsExpanded
@@ -47,7 +43,6 @@ public partial class Expander : ContentView
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
     public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(IView), typeof(Expander));
-    public static readonly BindableProperty BodyContentProperty = BindableProperty.Create(nameof(BodyContent), typeof(View), typeof(Expander), defaultBindingMode: BindingMode.TwoWay);
 
     private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {

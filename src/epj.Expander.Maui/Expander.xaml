@@ -19,10 +19,10 @@
           </ContentView.GestureRecognizers>
         </ContentView>
         <ContentPresenter
+          x:Name="ExpanderContent"
           ZIndex="0"
           VerticalOptions="Start"
           HorizontalOptions="Fill"
-          Content="{Binding BodyContent, Source={x:Reference ExpanderControl}, Mode=TwoWay}"
           IsVisible="{Binding IsExpanded, Source={x:Reference ExpanderControl}}" />
       </VerticalStackLayout>
     </ControlTemplate>
