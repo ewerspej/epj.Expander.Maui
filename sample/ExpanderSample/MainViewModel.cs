@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ExpanderSample;
 
@@ -26,5 +27,11 @@ public partial class MainViewModel : ObservableObject
                 Name = "Expander Three"
             }
         };
+    }
+
+    [RelayCommand]
+    private void Print(string text)
+    {
+        Console.WriteLine(text);
     }
 }

@@ -8,11 +8,16 @@
   x:DataType="expanderSample:MainViewModel">
 
   <VerticalStackLayout
+    x:Name="ExpanderLayout"
     BindableLayout.ItemsSource="{Binding Items}"
     Spacing="10">
     <BindableLayout.ItemTemplate>
       <DataTemplate x:DataType="expanderSample:MyClass">
-        <maui:Expander Animated="True">
+        <maui:Expander
+          Animated="True"
+          Command="{Binding Source={RelativeSource AncestorType={x:Type expanderSample:MainViewModel}}, Path=PrintCommand}"
+          CommandParameter="{Binding Name}"
+          HeaderTapped="Expander_OnHeaderTapped">
           <maui:Expander.HeaderContent>
             <Grid
               HeightRequest="80"
