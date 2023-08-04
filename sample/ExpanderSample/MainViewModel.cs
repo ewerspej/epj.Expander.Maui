@@ -1,13 +1,30 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace ExpanderSample;
 
 public partial class MainViewModel : ObservableObject
 {
-    [RelayCommand]
-    private void DoSomething(string arg)
+    [ObservableProperty]
+    private ObservableCollection<MyClass> _items;
+
+    public async Task LoadAsync()
     {
-        Console.WriteLine(arg);
+        await Task.Delay(TimeSpan.FromSeconds(0.5));
+        Items = new ObservableCollection<MyClass>
+        {
+            new()
+            {
+                Name = "Expander One"
+            },
+            new()
+            {
+                Name = "Expander Two"
+            },
+            new()
+            {
+                Name = "Expander Three"
+            }
+        };
     }
 }

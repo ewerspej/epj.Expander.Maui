@@ -7,81 +7,33 @@
   x:Class="ExpanderSample.MainPage"
   x:DataType="expanderSample:MainViewModel">
 
-  <VerticalStackLayout Spacing="10">
-    <maui:Expander
-      x:Name="ExpanderOne"
-      Animated="True"
-      Command="{Binding DoSomethingCommand}"
-      CommandParameter="{Binding Text, Source={x:Reference ExpanderOneLabel}}">
-      <maui:Expander.HeaderContent>
-        <Grid
-          HeightRequest="50"
-          BackgroundColor="DarkSlateGray"
-          HorizontalOptions="Fill"
-          ColumnDefinitions="*,auto">
-          <Label
-            Grid.Column="0"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Text="Expander 1"
-            TextColor="White"
-            FontSize="Title" />
-          <Image
-            Grid.Column="1"
-            Source="dotnet_bot.png"
-            HeightRequest="40"
-            Margin="8,0" />
-        </Grid>
-      </maui:Expander.HeaderContent>
-      <Grid
-        RowDefinitions="200"
-        BackgroundColor="LightBlue">
-        <Label
-          x:Name="ExpanderOneLabel"
-          VerticalOptions="Center"
-          HorizontalOptions="Center"
-          Margin="16,0"
-          Text="If you can see me, I am expanded!"
-          FontSize="Large" />
-      </Grid>
-    </maui:Expander>
-    <maui:Expander
-      x:Name="ExpanderTwo"
-      Animated="True"
-      Command="{Binding DoSomethingCommand}"
-      CommandParameter="{Binding Text, Source={x:Reference ExpanderTwoLabel}}">
-      <maui:Expander.HeaderContent>
-        <Grid
-          HeightRequest="50"
-          BackgroundColor="DarkSlateGray"
-          HorizontalOptions="Fill"
-          ColumnDefinitions="*,auto">
-          <Label
-            Grid.Column="0"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Text="Expander 2"
-            TextColor="White"
-            FontSize="Title" />
-          <Image
-            Grid.Column="1"
-            Source="dotnet_bot.png"
-            HeightRequest="40"
-            Margin="8,0" />
-        </Grid>
-      </maui:Expander.HeaderContent>
-      <Grid
-        RowDefinitions="300"
-        BackgroundColor="LightGreen">
-        <Label
-          x:Name="ExpanderTwoLabel"
-          VerticalOptions="Center"
-          HorizontalOptions="Center"
-          Margin="16,0"
-          Text="If you can see me, I am expanded, too!"
-          FontSize="Large" />
-      </Grid>
-    </maui:Expander>
+  <VerticalStackLayout
+    BindableLayout.ItemsSource="{Binding Items}"
+    Spacing="10">
+    <BindableLayout.ItemTemplate>
+      <DataTemplate x:DataType="expanderSample:MyClass">
+        <maui:Expander Animated="True">
+          <maui:Expander.HeaderContent>
+            <Grid
+              HeightRequest="80"
+              BackgroundColor="Orange">
+              <Label
+                Text="{Binding Name}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+            </Grid>
+          </maui:Expander.HeaderContent>
+          <Grid
+            HeightRequest="200"
+            BackgroundColor="SkyBlue">
+            <Label
+              Text="{Binding Name}"
+              VerticalOptions="Center"
+              HorizontalOptions="Center" />
+          </Grid>
+        </maui:Expander>
+      </DataTemplate>
+    </BindableLayout.ItemTemplate>
   </VerticalStackLayout>
 
 </ContentPage>

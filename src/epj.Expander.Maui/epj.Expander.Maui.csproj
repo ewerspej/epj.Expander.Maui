@@ -45,10 +45,4 @@
     </None>
   </ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="Expander.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
 </Project>
