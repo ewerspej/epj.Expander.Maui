@@ -7,38 +7,49 @@
   x:Class="ExpanderSample.MainPage"
   x:DataType="expanderSample:MainViewModel">
 
-  <VerticalStackLayout
-    x:Name="ExpanderLayout"
-    BindableLayout.ItemsSource="{Binding Items}"
-    Spacing="10">
-    <BindableLayout.ItemTemplate>
-      <DataTemplate x:DataType="expanderSample:MyClass">
-        <maui:Expander
-          Animated="True"
-          Command="{Binding Source={RelativeSource AncestorType={x:Type expanderSample:MainViewModel}}, Path=PrintCommand}"
-          CommandParameter="{Binding Name}"
-          HeaderTapped="Expander_OnHeaderTapped">
-          <maui:Expander.HeaderContent>
+  <ScrollView>
+    <VerticalStackLayout
+      Padding="8"
+      x:Name="ExpanderLayout"
+      BindableLayout.ItemsSource="{Binding Items}"
+      Spacing="10">
+      <BindableLayout.ItemTemplate>
+        <DataTemplate x:DataType="expanderSample:MyClass">
+          <maui:Expander
+            Animated="True"
+            Command="{Binding Source={RelativeSource AncestorType={x:Type expanderSample:MainViewModel}}, Path=PrintCommand}"
+            CommandParameter="{Binding Name}"
+            HeaderTapped="Expander_OnHeaderTapped">
+            <maui:Expander.HeaderContent>
+              <Border
+                BackgroundColor="Orange"
+                StrokeShape="RoundRectangle 6"
+                StrokeThickness="2">
+                <Border.Stroke>
+                  <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
+                </Border.Stroke>
+                <Grid HeightRequest="80">
+                  <Label
+                    Text="{Binding Name}"
+                    FontSize="Title"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+                </Grid>
+              </Border>
+            </maui:Expander.HeaderContent>
             <Grid
-              HeightRequest="80"
-              BackgroundColor="Orange">
+              Margin="6,0"
+              HeightRequest="200"
+              BackgroundColor="SkyBlue">
               <Label
                 Text="{Binding Name}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             </Grid>
-          </maui:Expander.HeaderContent>
-          <Grid
-            HeightRequest="200"
-            BackgroundColor="SkyBlue">
-            <Label
-              Text="{Binding Name}"
-              VerticalOptions="Center"
-              HorizontalOptions="Center" />
-          </Grid>
-        </maui:Expander>
-      </DataTemplate>
-    </BindableLayout.ItemTemplate>
-  </VerticalStackLayout>
+          </maui:Expander>
+        </DataTemplate>
+      </BindableLayout.ItemTemplate>
+    </VerticalStackLayout>
+  </ScrollView>
 
 </ContentPage>

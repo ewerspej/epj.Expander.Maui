@@ -126,7 +126,8 @@ public class Expander : ContentView
         {
             ZIndex = 0,
             HorizontalOptions = LayoutOptions.Fill,
-            VerticalOptions = LayoutOptions.Start
+            VerticalOptions = LayoutOptions.Start,
+            IsClippedToBounds = true
         };
 
         BodyGrid.SetBinding(Grid.IsVisibleProperty, new Binding(nameof(IsExpanded), source: this));
@@ -137,8 +138,7 @@ public class Expander : ContentView
             {
                 new RowDefinition(GridLength.Auto),
                 new RowDefinition(GridLength.Auto),
-            },
-            IsClippedToBounds = true
+            }
         };
 
         expanderGrid.Add(HeaderGrid);
@@ -207,7 +207,6 @@ public class Expander : ContentView
 
     /// <summary>
     /// Animations are experimental at the moment, call this once in App.xaml.cs or MauiProgram.cs to enable animation. 
-    /// Note: Animations are only supported on Android and iOS at the moment.
     /// </summary>
     /// <param name="enable"></param>
     public static void EnableAnimations(bool enable = true) => _animationsEnabled = enable;
