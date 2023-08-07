@@ -8,6 +8,8 @@ public class Expander : ContentView
 {
     private static bool _animationsEnabled;
 
+    private readonly SemaphoreSlim _semaphoreSlim = new(1, 1);
+
     private Grid HeaderGrid { get; }
     private Grid BodyGrid { get; }
 
@@ -61,11 +63,86 @@ public class Expander : ContentView
         set => SetValue(CommandParameterProperty, value);
     }
 
+    public Easing ExpandEasing
+    {
+        get => (Easing)GetValue(ExpandEasingProperty);
+        set => SetValue(ExpandEasingProperty, value);
+    }
+
+    public Easing CollapseEasing
+    {
+        get => (Easing)GetValue(CollapseEasingProperty);
+        set => SetValue(CollapseEasingProperty, value);
+    }
+
+    private uint _expandDuration = 250;
+    public uint ExpandDuration
+    {
+        get => _expandDuration;
+        set
+        {
+            if (_expandDuration == value)
+            {
+                return;
+            }
+            _expandDuration = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private uint _collapseDuration = 250;
+    public uint CollapseDuration
+    {
+        get => _collapseDuration;
+        set
+        {
+            if (_collapseDuration == value)
+            {
+                return;
+            }
+            _collapseDuration = value;
+            OnPropertyChanged();
+        }
+    }
+
     public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(Expander), propertyChanged: OnIsExpandedPropertyChanged);
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Expander));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Expander));
     public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(View), typeof(Expander), propertyChanged: OnHeaderContentPropertyChanged);
     public static readonly BindableProperty BodyContentProperty = BindableProperty.Create(nameof(BodyContent), typeof(View), typeof(Expander), propertyChanged: OnContentPropertyChanged);
+    public static readonly BindableProperty ExpandEasingProperty = BindableProperty.Create(nameof(ExpandEasing), typeof(Easing), typeof(Expander), defaultValue: Easing.CubicIn);
+    public static readonly BindableProperty CollapseEasingProperty = BindableProperty.Create(nameof(CollapseEasing), typeof(Easing), typeof(Expander), defaultValue: Easing.CubicOut);
+    public static readonly BindableProperty ExpandDurationProperty = BindableProperty.Create(nameof(ExpandDuration), typeof(int), typeof(Expander), defaultValue: 250, propertyChanged: OnExpandDurationPropertyChanged);
+    public static readonly BindableProperty CollapseDurationProperty = BindableProperty.Create(nameof(CollapseDuration), typeof(int), typeof(Expander), defaultValue: 250, propertyChanged: OnCollapseDurationPropertyChanged);
+
+    private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        ((Expander)bindable).IsExpanded = (bool)newValue;
+    }
+
+    private static void OnExpandDurationPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var expandDuration = (int)newValue;
+
+        if (expandDuration <= 0)
+        {
+            throw new ArgumentOutOfRangeException($"Value for {nameof(ExpandDuration)} must be larger than 0");
+        }
+
+        ((Expander)bindable).ExpandDuration = (uint)expandDuration;
+    }
+
+    private static void OnCollapseDurationPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var collapseDuration = (int)newValue;
+
+        if (collapseDuration <= 0)
+        {
+            throw new ArgumentOutOfRangeException($"Value for {nameof(CollapseDuration)} must be larger than 0");
+        }
+
+        ((Expander)bindable).CollapseDuration = (uint)collapseDuration;
+    }
 
     private static void OnHeaderContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -99,11 +176,6 @@ public class Expander : ContentView
         }
 
         grid.Add(view);
-    }
-
-    private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        ((Expander)bindable).IsExpanded = (bool)newValue;
     }
 
     public event EventHandler<ExpandedEventArgs> IsExpandedChanged;
@@ -159,8 +231,12 @@ public class Expander : ContentView
 
     private async void OnIsExpandedChanged()
     {
+        var notified = false;
+
         try
         {
+            await _semaphoreSlim.WaitAsync();
+
             if (!CanAnimate() || BodyContent == null)
             {
                 return;
@@ -170,24 +246,28 @@ public class Expander : ContentView
 
             if (IsExpanded)
             {
-                OnPropertyChanged(nameof(IsExpanded));
-
                 BodyContent.HeightRequest = 0;
                 BodyContent.TranslationY = -size.Minimum.Height;
 
+                OnPropertyChanged(nameof(IsExpanded));
+                notified = true;
+
                 await Task.WhenAll(new List<Task>
                 {
-                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height, Easing.CubicIn),
-                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0, Easing.CubicIn),
+                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height, ExpandEasing, ExpandDuration),
+                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0, ExpandEasing, ExpandDuration)
                 });
             }
             else
             {
                 await Task.WhenAll(new List<Task>
                 {
-                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height, Easing.CubicOut),
-                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0, Easing.CubicOut),
+                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height, CollapseEasing, CollapseDuration),
+                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0, CollapseEasing, CollapseDuration)
                 });
+
+                OnPropertyChanged(nameof(IsExpanded));
+                notified = true;
 
                 BodyContent.HeightRequest = size.Minimum.Height;
             }
@@ -198,8 +278,13 @@ public class Expander : ContentView
         }
         finally
         {
-            OnPropertyChanged(nameof(IsExpanded));
+            if (!notified)
+            {
+                OnPropertyChanged(nameof(IsExpanded));
+            }
             IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
+
+            _semaphoreSlim.Release();
         }
     }
 

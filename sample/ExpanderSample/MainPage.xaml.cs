@@ -16,7 +16,7 @@ namespace ExpanderSample
         private void Expander_OnHeaderTapped(object sender, ExpandedEventArgs e)
         {
             // uncomment this to enable accordion-style functionality
-            // note: this is just a demo implementation, there other ways to do this
+            // note: this is just a demo implementation, there are other ways to do this
 
             //if (sender is not Expander expander)
             //{

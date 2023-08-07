@@ -91,6 +91,10 @@ Most of these properties are bindable for MVVM goodness. Please let me know if s
 | object     | CommandParameter     | The optional command parameter                                          | null          |
 | bool       | IsExpanded           | Use to get or set whether the Expander is expanded.                     | false         |
 | bool       | Animate              | Use to enable animations - required opt-in, see below under "Animation" | false         |
+| Easing     | ExpandEasing         | Use to set the type of [Easing](https://learn.microsoft.com/dotnet/api/microsoft.maui.easing) for the expand animation             | CubicIn       |
+| Easing     | CollapseEasing       | Use to set the type of [Easing](https://learn.microsoft.com/dotnet/api/microsoft.maui.easing) for the collapse animation           | CubicOut      |
+| uint       | ExpandDuration       | Use to set the duration of the expand animation in milliseconds         | 250           |
+| uint       | CollapseDuration     | Use to set the duration of the collapse animation in milliseconds       | 250           |
 
 ## Events
 
@@ -105,8 +109,25 @@ Animations are currently experimental, the implementation is not well tested and
 
 Therefore, animations at this time require an explicit opt-in. Anywhere in your code, but ideally in *MauiProgram.cs*, add the following line of code:
 
+
 ```c#
 Expander.EnableAnimations();
+```
+
+After that, setting the `Animate` property to `True` will take effect:
+
+```xml
+<maui:Expander
+  Animate="True"
+  CollapseDuration="100"
+  ExpandDuration="200"
+  CollapseEasing="{x:Static Easing.SpringOut}"
+  ExpandEasing="{x:Static Easing.SpringIn}">
+  <maui:Expander.HeaderContent>
+    <!-- header -->
+  </maui:Expander.HeaderContent>
+  <!-- body -->
+</maui:Expander>
 ```
 
 # Examples
