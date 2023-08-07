@@ -90,7 +90,7 @@ Most of these properties are bindable for MVVM goodness. Please let me know if s
 | ICommand   | Command              | The command to be invoked when the header is tapped                     | null          |
 | object     | CommandParameter     | The optional command parameter                                          | null          |
 | bool       | IsExpanded           | Use to get or set whether the Expander is expanded.                     | false         |
-| bool       | Animate              | Use to enable animations - required opt-in, see below under "Animation" | false         |
+| bool       | Animate              | Use to enable animations - requires opt-in, see below under [Animation](https://github.com/ewerspej/epj.Expander.Maui#animations) | false         |
 | Easing     | ExpandEasing         | Use to set the type of [Easing](https://learn.microsoft.com/dotnet/api/microsoft.maui.easing) for the expand animation             | CubicIn       |
 | Easing     | CollapseEasing       | Use to set the type of [Easing](https://learn.microsoft.com/dotnet/api/microsoft.maui.easing) for the collapse animation           | CubicOut      |
 | uint       | ExpandDuration       | Use to set the duration of the expand animation in milliseconds         | 250           |
