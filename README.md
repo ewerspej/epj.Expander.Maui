@@ -12,7 +12,7 @@ This is a simple Expander control for .NET MAUI which can be used standalone as 
 ***Note**: Animations are experimental at the moment and require an explicit opt-in.*
 
 <div style="display: flex; justify-content: center">
-    <img src="../../assets/sample_00.png" width="360" />
+    <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/sample_00.PNG" width="360" />
 </div>
 
 ## Platforms
