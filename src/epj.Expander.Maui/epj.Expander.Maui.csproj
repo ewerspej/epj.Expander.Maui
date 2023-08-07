@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\assets\epj_icon.png">
+    <None Include="..\..\icon\epj_icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
