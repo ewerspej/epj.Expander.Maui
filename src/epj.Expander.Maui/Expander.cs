@@ -242,6 +242,8 @@ public class Expander : ContentView
                 return;
             }
 
+            var originalHeightRequest = BodyContent.HeightRequest;
+
             var size = BodyContent.Measure(double.PositiveInfinity, double.PositiveInfinity);
 
             if (IsExpanded)
@@ -268,9 +270,9 @@ public class Expander : ContentView
 
                 OnPropertyChanged(nameof(IsExpanded));
                 notified = true;
-
-                BodyContent.HeightRequest = size.Minimum.Height;
             }
+
+            BodyContent.HeightRequest = originalHeightRequest;
         }
         catch (Exception ex)
         {
