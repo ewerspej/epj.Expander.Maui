@@ -132,4 +132,4 @@ After that, setting the `Animate` property to `True` will take effect:
 
 # Examples
 
-If you are looking for a more extensive example for the potential usage of the control, e.g. if you are looking for a demo of the accordion-style functionality, have a look at the code in this repository. The sample app provides some starting points.
+If you are looking for a more extensive example for the potential usage of the control, e.g. if you are looking for a demo of the accordion-style functionality, have a look at the code in this repository. The sample app provides some examples and starting points.
