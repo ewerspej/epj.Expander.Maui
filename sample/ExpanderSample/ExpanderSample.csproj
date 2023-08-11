@@ -57,4 +57,16 @@
 	  <ProjectReference Include="..\..\src\epj.Expander.Maui\epj.Expander.Maui.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="AccordionExamples\DataBinding\DataBindingAccordionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AccordionExamples\Hybrid\HybridAccordionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AccordionExamples\ViewOnly\ViewOnlyAccordionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

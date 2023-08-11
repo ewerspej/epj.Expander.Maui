@@ -1,15 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
-  x:Class="ExpanderSample.MainPage">
+  x:Class="ExpanderSample.AccordionExamples.ViewOnly.ViewOnlyAccordionPage"
+  Title="View-only Accordion">
 
   <ScrollView>
     <VerticalStackLayout
+      x:Name="AccordionLayout"
       Padding="8"
       Spacing="6">
-      <maui:Expander Animated="True">
+      <maui:Expander
+        Animated="True"
+        HeaderTapped="Expander_OnHeaderTapped">
         <maui:Expander.HeaderContent>
           <Border
             BackgroundColor="Orange"
@@ -32,12 +36,14 @@
           HeightRequest="200"
           BackgroundColor="SkyBlue">
           <Label
-            Text="This is the content of an expander!"
+            Text="This is the content of the first expander!"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         </Grid>
       </maui:Expander>
-      <maui:Expander Animated="True">
+      <maui:Expander
+        Animated="True"
+        HeaderTapped="Expander_OnHeaderTapped">
         <maui:Expander.HeaderContent>
           <Border
             BackgroundColor="Orange"
@@ -48,28 +54,52 @@
             </Border.Stroke>
             <Grid HeightRequest="80">
               <Label
-                Text="Accordion examples inside"
+                Text="Expander #2"
                 FontSize="Title"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             </Grid>
           </Border>
         </maui:Expander.HeaderContent>
-        <VerticalStackLayout
+        <Grid
           Margin="6,0"
-          Padding="8"
-          Spacing="12"
+          HeightRequest="200"
           BackgroundColor="SkyBlue">
-          <Button
-            Text="View-only accordion"
-            Clicked="OnViewOnlyButtonClicked" />
-          <Button
-            Text="Hybrid accordion"
-            Clicked="OnHybridButtonClicked" />
-          <Button
-            Text="Data binding accordion"
-            Clicked="OnDataBindingButtonClicked" />
-        </VerticalStackLayout>
+          <Label
+            Text="This is the content of the second expander!"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+        </Grid>
+      </maui:Expander>
+      <maui:Expander
+        Animated="True"
+        HeaderTapped="Expander_OnHeaderTapped">
+        <maui:Expander.HeaderContent>
+          <Border
+            BackgroundColor="Orange"
+            StrokeShape="RoundRectangle 6"
+            StrokeThickness="2">
+            <Border.Stroke>
+              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
+            </Border.Stroke>
+            <Grid HeightRequest="80">
+              <Label
+                Text="Expander #3"
+                FontSize="Title"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+            </Grid>
+          </Border>
+        </maui:Expander.HeaderContent>
+        <Grid
+          Margin="6,0"
+          HeightRequest="200"
+          BackgroundColor="SkyBlue">
+          <Label
+            Text="This is the content of the third expander!"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+        </Grid>
       </maui:Expander>
     </VerticalStackLayout>
   </ScrollView>

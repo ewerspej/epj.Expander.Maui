@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:maui="clr-namespace:epj.Expander.Maui;assembly=epj.Expander.Maui"
+  xmlns:hybrid="clr-namespace:ExpanderSample.AccordionExamples.Hybrid"
+  x:Class="ExpanderSample.AccordionExamples.Hybrid.HybridAccordionPage"
+  x:DataType="hybrid:HybridAccordionViewModel"
+  Title="Hybrid Accordion">
+
+  <ScrollView>
+    <VerticalStackLayout
+      x:Name="AccordionLayout"
+      Padding="8"
+      Spacing="6"
+      BindableLayout.ItemsSource="{Binding Names}">
+      <BindableLayout.ItemTemplate>
+        <DataTemplate x:DataType="{x:Type x:String}">
+          <maui:Expander
+            Animated="True"
+            HeaderTapped="Expander_OnHeaderTapped">
+            <maui:Expander.HeaderContent>
+              <Border
+                BackgroundColor="Orange"
+                StrokeShape="RoundRectangle 6"
+                StrokeThickness="2">
+                <Border.Stroke>
+                  <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
+                </Border.Stroke>
+                <Grid HeightRequest="80">
+                  <Label
+                    Text="{Binding .}"
+                    FontSize="Title"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+                </Grid>
+              </Border>
+            </maui:Expander.HeaderContent>
+            <Grid
+              Margin="6,0"
+              HeightRequest="200"
+              BackgroundColor="SkyBlue">
+              <Label
+                Text="{Binding .}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+            </Grid>
+          </maui:Expander>
+        </DataTemplate>
+      </BindableLayout.ItemTemplate>
+    </VerticalStackLayout>
+  </ScrollView>
+
+</ContentPage>

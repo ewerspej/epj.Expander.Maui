@@ -1,4 +1,6 @@
-﻿using epj.Expander.Maui;
+﻿using ExpanderSample.AccordionExamples.DataBinding;
+using ExpanderSample.AccordionExamples.Hybrid;
+using ExpanderSample.AccordionExamples.ViewOnly;
 
 namespace ExpanderSample
 {
@@ -7,34 +9,21 @@ namespace ExpanderSample
         public MainPage()
         {
             InitializeComponent();
-
-            var viewModel = new MainViewModel();
-            _ = viewModel.LoadAsync();
-            BindingContext = viewModel;
         }
 
-        private void Expander_OnHeaderTapped(object sender, ExpandedEventArgs e)
+        private async void OnViewOnlyButtonClicked(object sender, EventArgs e)
         {
-            // uncomment this to enable accordion-style functionality
-            // note: this is just a demo implementation, there are other ways to do this
+            await Shell.Current.GoToAsync(nameof(ViewOnlyAccordionPage));
+        }
 
-            //if (sender is not Expander expander)
-            //{
-            //    return;
-            //}
-            //
-            //foreach (var child in ExpanderLayout.Children)
-            //{
-            //    if (child is not Expander other)
-            //    {
-            //        continue;
-            //    }
-            //
-            //    if (other != expander)
-            //    {
-            //        other.IsExpanded = false;
-            //    }
-            //}
+        private async void OnHybridButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(HybridAccordionPage));
+        }
+
+        private async void OnDataBindingButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(DataBindingAccordionPage));
         }
     }
 }
