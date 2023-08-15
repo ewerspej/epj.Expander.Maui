@@ -2,7 +2,7 @@
 
 namespace ExpanderSample.AccordionExamples.DataBinding;
 
-public partial class SomeDataModel : ObservableObject
+public partial class PersonModel : ObservableObject
 {
     [ObservableProperty]
     private string _name;

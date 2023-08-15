@@ -8,49 +8,40 @@
   x:DataType="dataBinding:DataBindingAccordionViewModel"
   Title="Data binding accordion">
 
-  <ScrollView>
-    <VerticalStackLayout
-      x:Name="AccordionLayout"
-      Padding="8"
-      Spacing="6"
-      BindableLayout.ItemsSource="{Binding Items}">
-      <BindableLayout.ItemTemplate>
-        <DataTemplate x:DataType="dataBinding:SomeDataModel">
-          <maui:Expander
-            Animated="True"
-            Command="{Binding SelectItemCommand, Source={RelativeSource AncestorType={x:Type dataBinding:DataBindingAccordionViewModel}}}"
-            CommandParameter="{Binding .}"
-            IsExpanded="{Binding Selected}">
-            <maui:Expander.HeaderContent>
-              <Border
-                BackgroundColor="Orange"
-                StrokeShape="RoundRectangle 6"
-                StrokeThickness="2">
-                <Border.Stroke>
-                  <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-                </Border.Stroke>
-                <Grid HeightRequest="80">
-                  <Label
-                    Text="{Binding Name}"
-                    FontSize="Title"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-                </Grid>
-              </Border>
-            </maui:Expander.HeaderContent>
+  <VerticalStackLayout
+    Spacing="6"
+    BindableLayout.ItemsSource="{Binding Items}">
+    <BindableLayout.ItemTemplate>
+      <DataTemplate x:DataType="dataBinding:PersonModel">
+
+        <maui:Expander
+          Animated="True"
+          Command="{Binding SelectItemCommand, Source={RelativeSource AncestorType={x:Type dataBinding:DataBindingAccordionViewModel}}}"
+          CommandParameter="{Binding .}"
+          IsExpanded="{Binding Selected}">
+          <maui:Expander.HeaderContent>
             <Grid
-              Margin="6,0"
-              HeightRequest="200"
-              BackgroundColor="SkyBlue">
+              HeightRequest="80"
+              BackgroundColor="Orange">
               <Label
-                Text="{Binding Description}"
+                Text="{Binding Name}"
+                FontSize="Title"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             </Grid>
-          </maui:Expander>
-        </DataTemplate>
-      </BindableLayout.ItemTemplate>
-    </VerticalStackLayout>
-  </ScrollView>
+          </maui:Expander.HeaderContent>
+          <Grid
+            HeightRequest="200"
+            BackgroundColor="DarkSlateGray">
+            <Label
+              Text="{Binding Description}"
+              VerticalOptions="Center"
+              HorizontalOptions="Center" />
+          </Grid>
+        </maui:Expander>
+
+      </DataTemplate>
+    </BindableLayout.ItemTemplate>
+  </VerticalStackLayout>
 
 </ContentPage>

@@ -6,102 +6,82 @@
   x:Class="ExpanderSample.AccordionExamples.ViewOnly.ViewOnlyAccordionPage"
   Title="View-only Accordion">
 
-  <ScrollView>
-    <VerticalStackLayout
-      x:Name="AccordionLayout"
-      Padding="8"
-      Spacing="6">
-      <maui:Expander
-        Animated="True"
-        HeaderTapped="Expander_OnHeaderTapped">
-        <maui:Expander.HeaderContent>
-          <Border
-            BackgroundColor="Orange"
-            StrokeShape="RoundRectangle 6"
-            StrokeThickness="2">
-            <Border.Stroke>
-              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-            </Border.Stroke>
-            <Grid HeightRequest="80">
-              <Label
-                Text="Expander #1"
-                FontSize="Title"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-            </Grid>
-          </Border>
-        </maui:Expander.HeaderContent>
+  <VerticalStackLayout
+    x:Name="AccordionLayout"
+    Spacing="6">
+
+    <maui:Expander
+      HeaderTapped="Expander_OnHeaderTapped"
+      Animated="True">
+      <maui:Expander.HeaderContent>
         <Grid
-          Margin="6,0"
-          HeightRequest="200"
-          BackgroundColor="SkyBlue">
+          HeightRequest="80"
+          BackgroundColor="Orange">
           <Label
-            Text="This is the content of the first expander!"
+            Text="Jane"
+            FontSize="Title"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         </Grid>
-      </maui:Expander>
-      <maui:Expander
-        Animated="True"
-        HeaderTapped="Expander_OnHeaderTapped">
-        <maui:Expander.HeaderContent>
-          <Border
-            BackgroundColor="Orange"
-            StrokeShape="RoundRectangle 6"
-            StrokeThickness="2">
-            <Border.Stroke>
-              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-            </Border.Stroke>
-            <Grid HeightRequest="80">
-              <Label
-                Text="Expander #2"
-                FontSize="Title"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-            </Grid>
-          </Border>
-        </maui:Expander.HeaderContent>
+      </maui:Expander.HeaderContent>
+      <Grid
+        HeightRequest="200"
+        BackgroundColor="DarkSlateGray">
+        <Label
+          Text="Wants to be an actress"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+      </Grid>
+    </maui:Expander>
+
+    <maui:Expander
+      HeaderTapped="Expander_OnHeaderTapped"
+      Animated="True">
+      <maui:Expander.HeaderContent>
         <Grid
-          Margin="6,0"
-          HeightRequest="200"
-          BackgroundColor="SkyBlue">
+          HeightRequest="80"
+          BackgroundColor="Orange">
           <Label
-            Text="This is the content of the second expander!"
+            Text="John"
+            FontSize="Title"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         </Grid>
-      </maui:Expander>
-      <maui:Expander
-        Animated="True"
-        HeaderTapped="Expander_OnHeaderTapped">
-        <maui:Expander.HeaderContent>
-          <Border
-            BackgroundColor="Orange"
-            StrokeShape="RoundRectangle 6"
-            StrokeThickness="2">
-            <Border.Stroke>
-              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-            </Border.Stroke>
-            <Grid HeightRequest="80">
-              <Label
-                Text="Expander #3"
-                FontSize="Title"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-            </Grid>
-          </Border>
-        </maui:Expander.HeaderContent>
+      </maui:Expander.HeaderContent>
+      <Grid
+        HeightRequest="200"
+        BackgroundColor="DarkSlateGray">
+        <Label
+          Text="Wants to be a rock musician"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+      </Grid>
+    </maui:Expander>
+
+    <maui:Expander
+      HeaderTapped="Expander_OnHeaderTapped"
+      Animated="True">
+      <maui:Expander.HeaderContent>
         <Grid
-          Margin="6,0"
-          HeightRequest="200"
-          BackgroundColor="SkyBlue">
+          HeightRequest="80"
+          BackgroundColor="Orange">
           <Label
-            Text="This is the content of the third expander!"
+            Text="Jasmine"
+            FontSize="Title"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         </Grid>
-      </maui:Expander>
-    </VerticalStackLayout>
-  </ScrollView>
+      </maui:Expander.HeaderContent>
+      <Grid
+        HeightRequest="200"
+        BackgroundColor="DarkSlateGray">
+        <Label
+          Text="Wants to be a heart surgeon"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+      </Grid>
+    </maui:Expander>
+
+  </VerticalStackLayout>
 
 </ContentPage>

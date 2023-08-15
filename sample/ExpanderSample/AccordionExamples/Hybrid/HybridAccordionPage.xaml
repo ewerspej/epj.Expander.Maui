@@ -8,47 +8,38 @@
   x:DataType="hybrid:HybridAccordionViewModel"
   Title="Hybrid Accordion">
 
-  <ScrollView>
-    <VerticalStackLayout
-      x:Name="AccordionLayout"
-      Padding="8"
-      Spacing="6"
-      BindableLayout.ItemsSource="{Binding Names}">
-      <BindableLayout.ItemTemplate>
-        <DataTemplate x:DataType="{x:Type x:String}">
-          <maui:Expander
-            Animated="True"
-            HeaderTapped="Expander_OnHeaderTapped">
-            <maui:Expander.HeaderContent>
-              <Border
-                BackgroundColor="Orange"
-                StrokeShape="RoundRectangle 6"
-                StrokeThickness="2">
-                <Border.Stroke>
-                  <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-                </Border.Stroke>
-                <Grid HeightRequest="80">
-                  <Label
-                    Text="{Binding .}"
-                    FontSize="Title"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-                </Grid>
-              </Border>
-            </maui:Expander.HeaderContent>
+  <VerticalStackLayout
+    x:Name="AccordionLayout"
+    Spacing="6"
+    BindableLayout.ItemsSource="{Binding People}">
+    <BindableLayout.ItemTemplate>
+      <DataTemplate x:DataType="{x:Type hybrid:PersonTuple}">
+        <maui:Expander
+          Animated="True"
+          HeaderTapped="Expander_OnHeaderTapped">
+          <maui:Expander.HeaderContent>
             <Grid
-              Margin="6,0"
-              HeightRequest="200"
-              BackgroundColor="SkyBlue">
+              HeightRequest="80"
+              BackgroundColor="Orange">
               <Label
-                Text="{Binding .}"
+                Text="{Binding Item1}"
+                FontSize="Title"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             </Grid>
-          </maui:Expander>
-        </DataTemplate>
-      </BindableLayout.ItemTemplate>
-    </VerticalStackLayout>
-  </ScrollView>
+          </maui:Expander.HeaderContent>
+          <Grid
+            HeightRequest="200"
+            BackgroundColor="DarkSlateGray">
+            <Label
+              Text="{Binding Item2}"
+              VerticalOptions="Center"
+              HorizontalOptions="Center" />
+          </Grid>
+        </maui:Expander>
+
+      </DataTemplate>
+    </BindableLayout.ItemTemplate>
+  </VerticalStackLayout>
 
 </ContentPage>

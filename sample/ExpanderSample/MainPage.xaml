@@ -14,10 +14,7 @@
           <Border
             BackgroundColor="Orange"
             StrokeShape="RoundRectangle 6"
-            StrokeThickness="2">
-            <Border.Stroke>
-              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-            </Border.Stroke>
+            StrokeThickness="0">
             <Grid HeightRequest="80">
               <Label
                 Text="Expander #1"
@@ -30,7 +27,7 @@
         <Grid
           Margin="6,0"
           HeightRequest="200"
-          BackgroundColor="SkyBlue">
+          BackgroundColor="DarkSlateGray">
           <Label
             Text="This is the content of an expander!"
             VerticalOptions="Center"
@@ -42,10 +39,7 @@
           <Border
             BackgroundColor="Orange"
             StrokeShape="RoundRectangle 6"
-            StrokeThickness="2">
-            <Border.Stroke>
-              <SolidColorBrush Color="{AppThemeBinding Dark='White', Light='Black', Default='Black'}" />
-            </Border.Stroke>
+            StrokeThickness="0">
             <Grid HeightRequest="80">
               <Label
                 Text="Accordion examples inside"
@@ -59,7 +53,7 @@
           Margin="6,0"
           Padding="8"
           Spacing="12"
-          BackgroundColor="SkyBlue">
+          BackgroundColor="DarkSlateGray">
           <Button
             Text="View-only accordion"
             Clicked="OnViewOnlyButtonClicked" />

@@ -6,32 +6,32 @@ namespace ExpanderSample.AccordionExamples.DataBinding;
 public partial class DataBindingAccordionViewModel : ObservableObject
 {
     [ObservableProperty]
-    private List<SomeDataModel> _items;
+    private List<PersonModel> _items;
 
     public DataBindingAccordionViewModel()
     {
-        Items = new List<SomeDataModel>
+        Items = new List<PersonModel>
         {
             new()
             {
-                Name = "Dan",
-                Description = "Wants to be a surgeon"
+                Name = "Jane",
+                Description = "Wants to be an actress"
             },
             new()
             {
-                Name = "Dina",
-                Description = "Wants to be a pirate"
+                Name = "John",
+                Description = "Wants to be a rock musician"
             },
             new()
             {
-                Name = "Dom",
-                Description = "Wants to be a programmer"
+                Name = "Jasmine",
+                Description = "Wants to be a heart surgeon"
             },
         };
     }
 
     [RelayCommand]
-    private void SelectItem(SomeDataModel item)
+    private void SelectItem(PersonModel item)
     {
         item.Selected = !item.Selected;
 
