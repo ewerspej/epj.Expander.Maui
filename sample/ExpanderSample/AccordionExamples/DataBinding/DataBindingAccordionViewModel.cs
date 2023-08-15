@@ -6,11 +6,11 @@ namespace ExpanderSample.AccordionExamples.DataBinding;
 public partial class DataBindingAccordionViewModel : ObservableObject
 {
     [ObservableProperty]
-    private List<PersonModel> _items;
+    private List<PersonModel> _people;
 
     public DataBindingAccordionViewModel()
     {
-        Items = new List<PersonModel>
+        People = new List<PersonModel>
         {
             new()
             {
@@ -35,11 +35,11 @@ public partial class DataBindingAccordionViewModel : ObservableObject
     {
         item.Selected = !item.Selected;
 
-        foreach (var model in Items)
+        foreach (var person in People)
         {
-            if (model != item)
+            if (person != item)
             {
-                model.Selected = false;
+                person.Selected = false;
             }
         }
     }

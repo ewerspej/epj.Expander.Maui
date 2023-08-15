@@ -10,7 +10,7 @@
 
   <VerticalStackLayout
     Spacing="6"
-    BindableLayout.ItemsSource="{Binding Items}">
+    BindableLayout.ItemsSource="{Binding People}">
     <BindableLayout.ItemTemplate>
       <DataTemplate x:DataType="dataBinding:PersonModel">
 
