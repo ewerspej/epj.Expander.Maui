@@ -254,19 +254,17 @@ public class Expander : ContentView
                 OnPropertyChanged(nameof(IsExpanded));
                 notified = true;
 
-                await Task.WhenAll(new List<Task>
-                {
-                    BodyContent.AnimateHeightAsync(0, size.Minimum.Height, ExpandEasing, ExpandDuration),
-                    BodyContent.AnimateTranslationYAsync(-size.Minimum.Height, 0, ExpandEasing, ExpandDuration)
-                });
+                var animation = new Animation()
+                    .Add(BodyContent.AnimateHeightRequest(start: 0, end: size.Minimum.Height, easing: ExpandEasing))
+                    .Add(BodyContent.AnimateTranslationY(start: -size.Minimum.Height, end: 0, easing: ExpandEasing));
+                await BodyContent.AnimateAsync(animation, ExpandDuration);
             }
             else
             {
-                await Task.WhenAll(new List<Task>
-                {
-                    BodyContent.AnimateTranslationYAsync(0, -size.Minimum.Height, CollapseEasing, CollapseDuration),
-                    BodyContent.AnimateHeightAsync(size.Minimum.Height, 0, CollapseEasing, CollapseDuration)
-                });
+                var animation = new Animation()
+                    .Add(BodyContent.AnimateHeightRequest(start: size.Minimum.Height, end: 0, easing: CollapseEasing))
+                    .Add(BodyContent.AnimateTranslationY(start: 0, end: -size.Minimum.Height, easing: CollapseEasing));
+                await BodyContent.AnimateAsync(animation, CollapseDuration);
 
                 OnPropertyChanged(nameof(IsExpanded));
                 notified = true;
@@ -280,13 +278,14 @@ public class Expander : ContentView
         }
         finally
         {
+            _semaphoreSlim.Release();
+
             if (!notified)
             {
                 OnPropertyChanged(nameof(IsExpanded));
             }
-            IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
 
-            _semaphoreSlim.Release();
+            IsExpandedChanged?.Invoke(this, new ExpandedEventArgs { Expanded = IsExpanded });
         }
     }
 

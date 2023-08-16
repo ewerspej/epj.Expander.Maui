@@ -2,22 +2,30 @@
 
 public static class ViewAnimationExtensions
 {
-    public static Task AnimateHeightAsync(this View view, double start, double end, Easing easing, uint duration)
+    public static Animation AnimateHeightRequest(this View view, double start, double end, Easing easing)
     {
-        var tcs = new TaskCompletionSource();
-
-        var animation = new Animation(h => view.HeightRequest = h, start, end, easing);
-        animation.Commit(view, "Height", length: duration, finished: (_, _) => tcs.SetResult());
-
-        return tcs.Task;
+        return new Animation(h => view.HeightRequest = h, start, end, easing);
     }
 
-    public static Task AnimateTranslationYAsync(this View view, double start, double end, Easing easing, uint duration)
+    public static Animation AnimateTranslationY(this View view, double start, double end, Easing easing)
+    {
+        return new Animation(y => view.TranslationY = y, start, end, easing);
+    }
+
+    public static Animation Add(this Animation parent, Animation animation)
+    {
+        parent.Add(0, 1, animation);
+        return parent;
+    }
+
+    public static Task AnimateAsync(this View view, Animation animation, uint duration)
     {
         var tcs = new TaskCompletionSource();
 
-        var animation = new Animation(y => view.TranslationY = y, start, end, easing);
-        animation.Commit(view, "Translation", length: duration, finished: (_, _) => tcs.SetResult());
+        animation.Commit(view, "ExpanderAnimation", length: duration, finished: (v, c) =>
+        {
+            tcs.SetResult();
+        });
 
         return tcs.Task;
     }
