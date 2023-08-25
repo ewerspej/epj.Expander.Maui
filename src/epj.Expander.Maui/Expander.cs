@@ -235,7 +235,10 @@ public class Expander : ContentView
 
         try
         {
-            await _semaphoreSlim.WaitAsync();
+            if (!await _semaphoreSlim.WaitAsync((int)Math.Max(ExpandDuration, CollapseDuration) + 50))
+            {
+                return;
+            }
 
             if (!CanAnimate() || BodyContent == null)
             {
