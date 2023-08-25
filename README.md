@@ -13,6 +13,7 @@ This is a simple Expander control for .NET MAUI which can be used standalone as 
 
 <div style="display: flex; justify-content: center">
     <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/sample_00.PNG" width="360" />
+    <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/1_HybridAccordion.GIF" width="500" />
 </div>
 
 ## Platforms
