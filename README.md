@@ -11,9 +11,9 @@ This is a simple Expander control for .NET MAUI which can be used standalone as 
 
 ***Note**: Animations are experimental at the moment and require an explicit opt-in.*
 
-<div style="display: flex; justify-content: center">
+<div style="display: flex;">
     <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/sample_00.PNG" width="360" />
-    <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/1_HybridAccordion.GIF" width="500" />
+    <img src="https://github.com/ewerspej/epj.Expander.Maui/blob/main/assets/1_HybridAccordion.gif" width="800" />
 </div>
 
 ## Platforms
