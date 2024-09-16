@@ -3,6 +3,7 @@ using System.Windows.Input;
 
 namespace epj.Expander.Maui;
 
+#pragma warning disable CA1001
 [ContentProperty(nameof(BodyContent))]
 public class Expander : ContentView
 {
@@ -126,7 +127,8 @@ public class Expander : ContentView
 
         if (expandDuration <= 0)
         {
-            throw new ArgumentOutOfRangeException($"Value for {nameof(ExpandDuration)} must be larger than 0");
+            var message = $"Value for {nameof(ExpandDuration)} must be larger than 0";
+            throw new ArgumentOutOfRangeException(message);
         }
 
         ((Expander)bindable).ExpandDuration = (uint)expandDuration;
@@ -138,7 +140,8 @@ public class Expander : ContentView
 
         if (collapseDuration <= 0)
         {
-            throw new ArgumentOutOfRangeException($"Value for {nameof(CollapseDuration)} must be larger than 0");
+            var message = $"Value for {nameof(CollapseDuration)} must be larger than 0";
+            throw new ArgumentOutOfRangeException(message);
         }
 
         ((Expander)bindable).CollapseDuration = (uint)collapseDuration;
@@ -300,3 +303,4 @@ public class Expander : ContentView
     /// <param name="enable"></param>
     public static void EnableAnimations(bool enable = true) => _animationsEnabled = enable;
 }
+#pragma warning restore CA1001
