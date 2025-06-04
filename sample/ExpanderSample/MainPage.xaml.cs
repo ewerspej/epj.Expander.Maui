@@ -13,17 +13,38 @@ namespace ExpanderSample
 
         private async void OnViewOnlyButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(ViewOnlyAccordionPage));
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(ViewOnlyAccordionPage));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private async void OnHybridButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(HybridAccordionPage));
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(HybridAccordionPage));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private async void OnDataBindingButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(DataBindingAccordionPage));
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(DataBindingAccordionPage));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
     }
 }

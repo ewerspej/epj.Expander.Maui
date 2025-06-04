@@ -255,21 +255,21 @@ public class Expander : ContentView
             if (IsExpanded)
             {
                 BodyContent.HeightRequest = 0;
-                BodyContent.TranslationY = -size.Minimum.Height;
+                BodyContent.TranslationY = -size.Height;
 
                 OnPropertyChanged(nameof(IsExpanded));
                 notified = true;
 
                 var animation = new Animation()
-                    .Add(BodyContent.AnimateHeightRequest(start: 0, end: size.Minimum.Height, easing: ExpandEasing))
-                    .Add(BodyContent.AnimateTranslationY(start: -size.Minimum.Height, end: 0, easing: ExpandEasing));
+                    .Add(BodyContent.AnimateHeightRequest(start: 0, end: size.Height, easing: ExpandEasing))
+                    .Add(BodyContent.AnimateTranslationY(start: -size.Height, end: 0, easing: ExpandEasing));
                 await BodyContent.AnimateAsync(animation, ExpandDuration);
             }
             else
             {
                 var animation = new Animation()
-                    .Add(BodyContent.AnimateHeightRequest(start: size.Minimum.Height, end: 0, easing: CollapseEasing))
-                    .Add(BodyContent.AnimateTranslationY(start: 0, end: -size.Minimum.Height, easing: CollapseEasing));
+                    .Add(BodyContent.AnimateHeightRequest(start: size.Height, end: 0, easing: CollapseEasing))
+                    .Add(BodyContent.AnimateTranslationY(start: 0, end: -size.Height, easing: CollapseEasing));
                 await BodyContent.AnimateAsync(animation, CollapseDuration);
 
                 OnPropertyChanged(nameof(IsExpanded));
